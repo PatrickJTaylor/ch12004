@@ -8,6 +8,9 @@ on:
     paths:
       - CH12004/**
 
+env:
+  BASE_URL: /${{ github.event.repository.name }}
+
 # This job installs dependencies, build the book, and pushes it to `gh-pages`
 jobs:
   deploy-book:
