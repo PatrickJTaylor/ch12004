@@ -40,6 +40,7 @@ parts:
       - file: lab_5/matplotlib.ipynb
       - file: lab_5/synoptic_exercises.ipynb
 
-  - caption: Miscellaneous
+  - caption: Resources
     chapters:
-      - file: glossary.ipynb
+      - file: resources/the_notebook_interface.md
+      - file: resources/glossary.ipynb
