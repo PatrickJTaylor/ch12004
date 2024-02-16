@@ -59,11 +59,9 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lab_1/synoptic_exercises';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab_5/solutions';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lists" href="../lab_2/lists.html" />
-    <link rel="prev" title="Types" href="types.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,6 +123,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -184,13 +184,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../lab_0/using_noteable.html">Getting started with Noteable</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 1 - Fundamentals</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_python_as_a_calculator.html">Using Python as a calculator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="strings.html">Strings</a></li>
-<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Synoptic exercises</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/using_python_as_a_calculator.html">Using Python as a calculator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/strings.html">Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/types.html">Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/synoptic_exercises.html">Synoptic exercises</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 2 - Data structures</span></p>
 <ul class="nav bd-sidenav">
@@ -214,10 +214,10 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 5 - External libraries</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../lab_5/numpy.html">NumPy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lab_5/matplotlib.html">Matplotlib</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lab_5/file_io.html">File I/O</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lab_5/synoptic_exercises.html">Synoptic exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy.html">NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matplotlib.html">Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="synoptic_exercises.html">Synoptic exercises</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
@@ -277,7 +277,7 @@
       
       
       
-      <li><a href="../_sources/lab_1/synoptic_exercises.ipynb" target="_blank"
+      <li><a href="../_sources/lab_5/solutions.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -375,115 +375,85 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="synoptic-exercises">
 <h1>Synoptic exercises<a class="headerlink" href="#synoptic-exercises" title="Link to this heading">#</a></h1>
-<p>Congratulations, your Python journey has officially begun! Here are a few synoptic exercises to test your understanding, feel free to refer back to the previous material where it may be helpful.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Remember to use <strong>variables</strong> to minimise the amount of data you have to input manually. You will also find that using variables enables you to do the same calculation with <strong>different inputs</strong> in much less time than if you had to re-write the entire calculation from scratch.</p>
-<p>It may also be worth using <code class="docutils literal notranslate"><span class="pre">print</span></code> statements and f-strings where possible to clearly display the results you have calculated (and to improve the readability of your code).</p>
+<p>It’s time to <strong>plot</strong>.</p>
+<p><strong>1.</strong> The <strong>mean activity</strong> of ions in solution can be measured experimentally. You have been provided with the mean activity of Na<span class="math notranslate nohighlight">\(_{2}\)</span>SO<span class="math notranslate nohighlight">\(_{4}\)</span> at <span class="math notranslate nohighlight">\(298\,\)</span>K for a range of ionic strengths:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ionic_strength</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="mf">0.006</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">,</span> <span class="mf">0.030</span><span class="p">,</span> <span class="mf">0.060</span><span class="p">,</span> <span class="mf">0.150</span><span class="p">,</span> <span class="mf">0.300</span><span class="p">,</span> <span class="mf">0.600</span><span class="p">,</span> <span class="mf">1.500</span><span class="p">,</span> <span class="mf">3.000</span><span class="p">,</span> <span class="mf">6.000</span><span class="p">]</span>
+<span class="n">mean_activity</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.886</span><span class="p">,</span> <span class="mf">0.846</span><span class="p">,</span> <span class="mf">0.777</span><span class="p">,</span> <span class="mf">0.712</span><span class="p">,</span> <span class="mf">0.637</span><span class="p">,</span> <span class="mf">0.529</span><span class="p">,</span> <span class="mf">0.446</span><span class="p">,</span> <span class="mf">0.366</span><span class="p">,</span> <span class="mf">0.268</span><span class="p">,</span> <span class="mf">0.204</span><span class="p">,</span> <span class="mf">0.155</span><span class="p">]</span>
+</pre></div>
 </div>
-<p><strong>1.</strong> Calculate the energy of a photon (in <strong>Joules</strong>) with frequency <span class="math notranslate nohighlight">\(2.18 \times 10^{10}\,\)</span>GHz according to:</p>
-<div class="math notranslate nohighlight">
-\[E = hf,\]</div>
-<p>where <span class="math notranslate nohighlight">\(f\)</span> is the frequency and <span class="math notranslate nohighlight">\(h\)</span> is Planck’s constant. You can <code class="docutils literal notranslate"><span class="pre">import</span></code> Planck’s constant from the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> library:</p>
+<p>a) Use <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> to render a scatter plot of the mean activity as a function of the ionic strength <span class="math notranslate nohighlight">\(I\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">ionic_strength</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="mf">0.006</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">,</span> <span class="mf">0.030</span><span class="p">,</span> <span class="mf">0.060</span><span class="p">,</span> <span class="mf">0.150</span><span class="p">,</span> <span class="mf">0.300</span><span class="p">,</span> <span class="mf">0.600</span><span class="p">,</span> <span class="mf">1.500</span><span class="p">,</span> <span class="mf">3.000</span><span class="p">,</span> <span class="mf">6.000</span><span class="p">])</span>
+<span class="n">mean_activity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.886</span><span class="p">,</span> <span class="mf">0.846</span><span class="p">,</span> <span class="mf">0.777</span><span class="p">,</span> <span class="mf">0.712</span><span class="p">,</span> <span class="mf">0.637</span><span class="p">,</span> <span class="mf">0.529</span><span class="p">,</span> <span class="mf">0.446</span><span class="p">,</span> <span class="mf">0.366</span><span class="p">,</span> <span class="mf">0.268</span><span class="p">,</span> <span class="mf">0.204</span><span class="p">,</span> <span class="mf">0.155</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ionic_strength</span><span class="p">,</span> <span class="n">mean_activity</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$I$ / M&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\gamma_{\pm}$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.62607015e-34
-</pre></div>
+<img alt="../_images/a0a8f02f8539cf6129ce11fbcad178f8fa82d4006b6945e14f4ce17dea649854.png" src="../_images/a0a8f02f8539cf6129ce11fbcad178f8fa82d4006b6945e14f4ce17dea649854.png" />
 </div>
 </div>
-</div>
-<p><strong>2.</strong> Calculate the wavelengths (in <strong>nanometres</strong>) corresponding to the first line in the Lyman, Balmer and Paschen series. You will need the following relation:</p>
+<p>b) The mean activity can be predicted by the Debye-Huckel limiting law:</p>
 <div class="math notranslate nohighlight">
-\[\frac{1}{\lambda} = R_{\mathrm{H}}\left[\frac{1}{n^{2}_{1}} - \frac{1}{n^{2}_{2}}\right],\]</div>
-<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the wavelength, <span class="math notranslate nohighlight">\(R_{\mathrm{H}}\)</span> is the Rydberg constant and <span class="math notranslate nohighlight">\(n_{2}\)</span> is the principal quantum number of the excited state. <span class="math notranslate nohighlight">\(n_{1} = 1\)</span> for the Lyman series, <span class="math notranslate nohighlight">\(2\)</span> for the Balmer series and <span class="math notranslate nohighlight">\(3\)</span> for the Paschen series. You may access the Rydberg constant with:</p>
+\[\ln\gamma_{\pm} = -|z_{+}z_{-}|A\sqrt{I},\]</div>
+<p>where <span class="math notranslate nohighlight">\(z_{+}\)</span> and <span class="math notranslate nohighlight">\(z_{-}\)</span> are the charges of the cations and anions, <span class="math notranslate nohighlight">\(I\)</span> is the ionic strength and <span class="math notranslate nohighlight">\(A\)</span> is a solvent and temperature dependent constant.</p>
+<p>Write a function to calculate the mean activity according to the Debye-Huckel limiting law (feel free to reuse your code from <a class="reference internal" href="../lab_4/functions.html"><span class="std std-doc">previous exercises</span></a>). Using <span class="math notranslate nohighlight">\(A = 1.179\,\)</span>M<span class="math notranslate nohighlight">\(^{\frac{1}{2}}\)</span>, plot the Debye-Huckel mean activity from <span class="math notranslate nohighlight">\(I = 0\,\)</span>M to <span class="math notranslate nohighlight">\(I = 6\,\)</span>M and compare this with the experimental values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">Rydberg</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">debye_huckel</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">z_plus</span><span class="p">,</span> <span class="n">z_minus</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">z_plus</span> <span class="o">*</span> <span class="n">z_minus</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">I</span><span class="p">))</span>
+
+<span class="n">I_dh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">gamma_dh</span> <span class="o">=</span> <span class="n">debye_huckel</span><span class="p">(</span><span class="n">I_dh</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.179</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ionic_strength</span><span class="p">,</span> <span class="n">mean_activity</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">I_dh</span><span class="p">,</span> <span class="n">gamma_dh</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$I$ / M&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\gamma_{\pm}$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10973731.56816
-</pre></div>
+<img alt="../_images/6fe417762d48dd60cf0357933f83d3f9ff1917e3df065e3a2fa2d5e9adb875d2.png" src="../_images/6fe417762d48dd60cf0357933f83d3f9ff1917e3df065e3a2fa2d5e9adb875d2.png" />
 </div>
 </div>
-</div>
-<p><strong>3.</strong> Consider the following blocks of code. Each one of them will cause an error when run. Taking each block one-by-one:</p>
-<ul class="simple">
-<li><p>Predict which line of code will cause the error and why this line is problematic.</p></li>
-<li><p>Run the block of code in a Jupyter notebook and see whether or not you were correct.</p></li>
-<li><p>Modify the code to solve the problem and thus remove the error.</p></li>
-</ul>
-<p>Block 1:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;64&#39;</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Block 2:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">string_variable</span> <span class="o">=</span> <span class="s1">&#39;Python is pretty cool! &#39;</span>
-<span class="n">repeat</span> <span class="o">=</span> <span class="mf">4.0</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">string_variable</span> <span class="o">*</span> <span class="n">repeat</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Block 3:
-This code uses the following expression for the root mean square speed of a molecule:</p>
+<p>c) There are several extensions of the Debye-Huckel limiting law that aim to improve its description of the mean activity outside of the dilute limit. One such extension is:</p>
 <div class="math notranslate nohighlight">
-\[\sqrt{\frac{3RT}{M}},\]</div>
-<p>where <span class="math notranslate nohighlight">\(R\)</span> is the gas constant, <span class="math notranslate nohighlight">\(T\)</span> is the temperature and <span class="math notranslate nohighlight">\(M\)</span> is the molar mass.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This block also contains a problem which, whilst it <strong>will not cause an error</strong>, will lead to the wrong result being calculated. See if you can spot and fix this problem in addition to removing the error.</p>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">scipy</span>
+\[\ln\gamma_{\pm} = -|z_{+}z_{-}|\frac{A\sqrt{I}}{1 + Ba_{0}\sqrt{I}},\]</div>
+<p>where <span class="math notranslate nohighlight">\(B\)</span> is another solvent and temperature dependent constant and <span class="math notranslate nohighlight">\(a_{0}\)</span> is the distance of closest approach (expected to be proportional to the closest distance between ions in solution).</p>
+<p>Write a function to calculate the mean activity according to the extended Debye-Huckel limiting law. Using <span class="math notranslate nohighlight">\(B = 18.3\)</span> and <span class="math notranslate nohighlight">\(a_{0} = 0.071\)</span>, plot the extended Debye-Huckel mean activity from <span class="math notranslate nohighlight">\(I = 0\,\)</span>M to <span class="math notranslate nohighlight">\(I = 6\,\)</span>M and compare this with the experimental values and the original Debye-Huckel limiting law.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">debye_huckel_extended</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">z_plus</span><span class="p">,</span> <span class="n">z_minus</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">a_0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">z_plus</span> <span class="o">*</span> <span class="n">z_minus</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">I</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">B</span> <span class="o">*</span> <span class="n">a_0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">I</span><span class="p">))))</span>
 
-<span class="c1"># You do not have to include the imports above if you have already imported math and scipy in your notebook.</span>
+<span class="n">gamma_dhe</span> <span class="o">=</span> <span class="n">debye_huckel_extended</span><span class="p">(</span><span class="n">I_dh</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">1.179</span><span class="p">,</span> <span class="mf">18.3</span><span class="p">,</span> <span class="mf">0.071</span><span class="p">)</span>
 
-<span class="n">temperature</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">molar_mass</span> <span class="o">=</span> <span class="mf">31.998</span> <span class="c1"># molar mass of an oxygen molecule</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ionic_strength</span><span class="p">,</span> <span class="n">mean_activity</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Experimental data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">I_dh</span><span class="p">,</span> <span class="n">gamma_dh</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Limiting law&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">I_dh</span><span class="p">,</span> <span class="n">gamma_dhe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Extended limiting law&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$I$ / M&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\gamma_{\pm}$&#39;</span><span class="p">)</span>
 
-<span class="c1"># Calculate the root mean square speed of an oxygen molecule at 500 K</span>
-<span class="n">rms_speed</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">{</span><span class="mi">3</span> <span class="o">*</span> <span class="n">scipy</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">R</span> <span class="o">*</span> <span class="n">temperature</span> <span class="o">/</span> <span class="n">molar_mass</span><span class="p">}</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The root mean square speed of an O2 molecule at 500 K is </span><span class="si">{</span><span class="n">rms_speed</span><span class="si">}</span><span class="s1"> ms-1.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Block 4:
-This code is trying to solve the following equation,</p>
-<div class="math notranslate nohighlight">
-\[5x^{2} + 12x + 7,\]</div>
-<p>using the quadratic formula:</p>
-<div class="math notranslate nohighlight">
-\[\frac{-b \pm \sqrt{b^{2} - 4ac}}{2a}.\]</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This one is difficult if you are new to Python. See if you can figure out why the error occurs, then see the hidden solution below (the “Click to show” box) to learn how it can be fixed.</p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="o">=</span> <span class="s1">&#39;This code calculates the solutions to 5x^2 + 12x + 7&#39;</span>
-
-<span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mi">12</span>
-<span class="n">c</span> <span class="o">=</span> <span class="mi">7</span>
-
-<span class="n">solution_1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
-<span class="n">solution_2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The solutions are </span><span class="si">{</span><span class="n">solution_1</span><span class="si">}</span><span class="s1"> and </span><span class="si">{</span><span class="n">solution_2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
+<div class="cell_output docutils container">
+<img alt="../_images/46521d2a1ed400e7b501025bb7387f8087c1a97dda75da00ed2347a2c78c4957.png" src="../_images/46521d2a1ed400e7b501025bb7387f8087c1a97dda75da00ed2347a2c78c4957.png" />
 </div>
-<p>How to fix the error for code block 4:</p>
-<div class="toggle docutils container">
-<p>The problem here is that we have <strong>redefined</strong> the print function. The first line of block 4 assigns a string to the name <code class="docutils literal notranslate"><span class="pre">print</span></code>. This is perfectly valid Python, but the name <code class="docutils literal notranslate"><span class="pre">print</span></code> was <strong>already in use</strong>: it is the name of the <code class="docutils literal notranslate"><span class="pre">print</span></code> function. This means that when the final line runs, Python complains that you are treating a <code class="docutils literal notranslate"><span class="pre">str</span></code> (a string) like a <strong>function</strong>, as we have effectively replaced the <code class="docutils literal notranslate"><span class="pre">print</span></code> function with the string: ‘This code calculates the solutions to 5x^2 + 12x + 7’.</p>
-<p>So if we have seem to have “lost” the print function, how do we get it back? We can do this by <strong>restarting the kernel</strong>. In your Jupyter notebook, navigate via the menu bar at the top to Kernel-&gt;Restart and Run All Cells. This will effectively clear Python’s memory and re-run all of your code, meaning that <code class="docutils literal notranslate"><span class="pre">print</span></code> will once again refer to the <strong>function</strong> we want. Be sure to fix code block 4 before you do this (i.e. actually <strong>call</strong> the print function rather than assigning a variable to that name).</p>
 </div>
 </section>
 
@@ -500,7 +470,7 @@ This code is trying to solve the following equation,</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./lab_1"
+            path: "./lab_5"
         },
         predefinedOutput: true
     }
@@ -517,24 +487,6 @@ This code is trying to solve the following equation,</p>
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="types.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Types</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../lab_2/lists.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lists</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
