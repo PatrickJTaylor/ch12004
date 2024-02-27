@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Synoptic exercises &#8212; CH12004: Skills for chemists</title>
+    <title>Combining loops and logic &#8212; CH12004: Skills for chemists</title>
   
   
   
@@ -59,11 +59,9 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lab_5/synoptic_exercises';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab_3/combining_loops_and_logic';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The Jupyter Notebook interface" href="../resources/the_notebook_interface.html" />
-    <link rel="prev" title="File I/O" href="file_io.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,6 +122,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -202,10 +202,10 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 3 - Loops and logic</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../lab_3/loops.html">Loops</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lab_3/nested_loops.html">Nested loops</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lab_3/logic.html">Logic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lab_3/synoptic_exercises.html">Synoptic Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loops.html">Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nested_loops.html">Nested loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logic.html">Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="synoptic_exercises.html">Synoptic Exercises</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 4 - Functions and errors</span></p>
 <ul class="nav bd-sidenav">
@@ -214,11 +214,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../lab_4/synoptic_exercises.html">Synoptic exercises</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 5 - External libraries</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="numpy.html">NumPy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="matplotlib.html">Matplotlib</a></li>
-<li class="toctree-l1"><a class="reference internal" href="file_io.html">File I/O</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Synoptic exercises</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lab_5/numpy.html">NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_5/matplotlib.html">Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_5/file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_5/synoptic_exercises.html">Synoptic exercises</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
@@ -278,7 +278,7 @@
       
       
       
-      <li><a href="../_sources/lab_5/synoptic_exercises.ipynb" target="_blank"
+      <li><a href="../_sources/lab_3/combining_loops_and_logic.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -360,7 +360,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Synoptic exercises</h1>
+    <h1>Combining loops and logic</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -374,37 +374,100 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="synoptic-exercises">
-<h1>Synoptic exercises<a class="headerlink" href="#synoptic-exercises" title="Link to this heading">#</a></h1>
-<p>It’s time to <strong>plot</strong>.</p>
-<p><strong>1.</strong></p>
-<p>a) Read in the experimental data using <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and plot the isotherm using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
-<p>b) Assuming ideality, the isotherm should be well modelled by the ideal gas law:</p>
-<div class="math notranslate nohighlight">
-\[p = v^{-1}RT,\]</div>
-<p>where <span class="math notranslate nohighlight">\(p\)</span> is the pressure, <span class="math notranslate nohighlight">\(v\)</span> is the molar volume (<span class="math notranslate nohighlight">\(V / n\)</span>), <span class="math notranslate nohighlight">\(R\)</span> is the gas constant and <span class="math notranslate nohighlight">\(T\)</span> is the temperature.</p>
-<p>Write a function to calculate the pressure with the ideal gas law and use this to model the SF<span class="math notranslate nohighlight">\(_{6}\)</span> isotherm. Plot your modelled isotherm against the experimental data.</p>
-<p>c) Non-ideality due to intermolecular interactions and other factors can be accounted for (in part) by the Van der Waals equation of state:</p>
-<div class="math notranslate nohighlight">
-\[p = \frac{RT}{v - b} - \frac{a}{v^{2}},\]</div>
-<p>where <span class="math notranslate nohighlight">\(p\)</span> is the pressure, <span class="math notranslate nohighlight">\(R\)</span> is the gas constant, <span class="math notranslate nohighlight">\(v\)</span> is the molar volume and <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are system dependent constants that describe the strength of the interactions and excluded volume effects respectively.</p>
-<p>Write a function to calculate the pressure with the Van der Waals equation and use this to model the SF<span class="math notranslate nohighlight">\(_{6}\)</span> isotherm. Plot your modelled isotherm and compare this against the idealised curve and the experimental data.</p>
-<p><strong>2.</strong> The <strong>mean activity</strong> of ions in solution can be measured experimentally. You have been provided with the mean activity of Na<span class="math notranslate nohighlight">\(_{2}\)</span>SO<span class="math notranslate nohighlight">\(_{4}\)</span> at <span class="math notranslate nohighlight">\(298\,\)</span>K for a range of ionic strengths:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ionic_strength</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="mf">0.006</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">,</span> <span class="mf">0.030</span><span class="p">,</span> <span class="mf">0.060</span><span class="p">,</span> <span class="mf">0.150</span><span class="p">,</span> <span class="mf">0.300</span><span class="p">,</span> <span class="mf">0.600</span><span class="p">,</span> <span class="mf">1.500</span><span class="p">,</span> <span class="mf">3.000</span><span class="p">,</span> <span class="mf">6.000</span><span class="p">]</span>
-<span class="n">mean_activity</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.886</span><span class="p">,</span> <span class="mf">0.846</span><span class="p">,</span> <span class="mf">0.777</span><span class="p">,</span> <span class="mf">0.712</span><span class="p">,</span> <span class="mf">0.637</span><span class="p">,</span> <span class="mf">0.529</span><span class="p">,</span> <span class="mf">0.446</span><span class="p">,</span> <span class="mf">0.366</span><span class="p">,</span> <span class="mf">0.268</span><span class="p">,</span> <span class="mf">0.204</span><span class="p">,</span> <span class="mf">0.155</span><span class="p">]</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="combining-loops-and-logic">
+<h1>Combining loops <strong>and</strong> logic<a class="headerlink" href="#combining-loops-and-logic" title="Link to this heading">#</a></h1>
+<p>All of our examples so far have been relatively simple individual logical statements, but there is no reason that we cannot apply logical operations in <strong>loops</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s1"> is divisible by 3.&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>a) Use <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> to render a scatter plot of the mean activity as a function of the ionic strength <span class="math notranslate nohighlight">\(I\)</span>.</p>
-<p>b) The mean activity can be predicted by the Debye-Huckel limiting law:</p>
-<div class="math notranslate nohighlight">
-\[\ln\gamma_{\pm} = -|z_{+}z_{-}|A\sqrt{I},\]</div>
-<p>where <span class="math notranslate nohighlight">\(z_{+}\)</span> and <span class="math notranslate nohighlight">\(z_{-}\)</span> are the charges of the cations and anions, <span class="math notranslate nohighlight">\(I\)</span> is the ionic strength and <span class="math notranslate nohighlight">\(A\)</span> is a solvent and temperature dependent constant.</p>
-<p>Write a function to calculate the mean activity according to the Debye-Huckel limiting law (feel free to reuse your code from <a class="reference internal" href="../lab_4/functions.html"><span class="std std-doc">previous exercises</span></a>). Using <span class="math notranslate nohighlight">\(A = 1.179\,\)</span>M<span class="math notranslate nohighlight">\(^{\frac{1}{2}}\)</span>, plot the Debye-Huckel mean activity from <span class="math notranslate nohighlight">\(I = 0\,\)</span>M to <span class="math notranslate nohighlight">\(I = 6\,\)</span>M and compare this with the experimental values.</p>
-<p>c) There are several extensions of the Debye-Huckel limiting law that aim to improve its description of the mean activity outside of the dilute limit. One such extension is:</p>
-<div class="math notranslate nohighlight">
-\[\ln\gamma_{\pm} = -|z_{+}z_{-}|\frac{A\sqrt{I}}{1 + Ba_{0}\sqrt{I}},\]</div>
-<p>where <span class="math notranslate nohighlight">\(B\)</span> is another solvent and temperature dependent constant and <span class="math notranslate nohighlight">\(a_{0}\)</span> is the distance of closest approach (expected to be proportional to the closest distance between ions in solution).</p>
-<p>Write a function to calculate the mean activity according to the extended Debye-Huckel limiting law. Using <span class="math notranslate nohighlight">\(B = 18.3\)</span> and <span class="math notranslate nohighlight">\(a_{0} = 0.071\)</span>, plot the extended Debye-Huckel mean activity from <span class="math notranslate nohighlight">\(I = 0\,\)</span>M to <span class="math notranslate nohighlight">\(I = 6\,\)</span>M and compare this with the experimental values and the original Debye-Huckel limiting law.</p>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 is divisible by 3.
+6 is divisible by 3.
+9 is divisible by 3.
+12 is divisible by 3.
+15 is divisible by 3.
+18 is divisible by 3.
+21 is divisible by 3.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we have combined a simple <code class="docutils literal notranslate"><span class="pre">if</span></code> statement with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to find all of the multiples of <span class="math notranslate nohighlight">\(3\)</span> between <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(21\)</span>.</p>
+<p>In addition to all the <strong>logic</strong> we have learnt about thus far, there are two useful <strong>keywords</strong> that are relevant specifically to using logic in <strong>loops</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="k">break</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We have broken out of the loop!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+We have broken out of the loop!
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the example above, we are looping over numbers between <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(100\)</span>. The <code class="docutils literal notranslate"><span class="pre">if</span></code> statement checks if <code class="docutils literal notranslate"><span class="pre">number</span></code> is greater than <span class="math notranslate nohighlight">\(10\)</span>, and if it is, the <code class="docutils literal notranslate"><span class="pre">break</span></code> keyword is run. As the name implies, the <code class="docutils literal notranslate"><span class="pre">break</span></code> keyword breaks us out of the loop: it stop the rest of the iterations that would otherwise have run from occurring. You can see this happening above because as soon as <code class="docutils literal notranslate"><span class="pre">10</span></code> is printed, no more numbers are displayed and instead the <code class="docutils literal notranslate"><span class="pre">'We</span> <span class="pre">have</span> <span class="pre">broken</span> <span class="pre">out</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">loop!'</span></code> message is seen, which should only be printed <strong>after</strong> the loop has finished.</p>
+<p>The other keyword that pairs nicely with the logic we have learnt is <code class="docutils literal notranslate"><span class="pre">continue</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">continue</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+10
+15
+20
+25
+30
+35
+40
+45
+50
+55
+60
+65
+70
+75
+80
+85
+90
+95
+100
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we are testing whether or not <code class="docutils literal notranslate"><span class="pre">number</span></code> is <strong>not</strong> divisible by <code class="docutils literal notranslate"><span class="pre">5</span></code>. If <code class="docutils literal notranslate"><span class="pre">number</span></code> <strong>is</strong> divisible by <code class="docutils literal notranslate"><span class="pre">5</span></code>, then the <code class="docutils literal notranslate"><span class="pre">continue</span></code> keyword does not run and we <code class="docutils literal notranslate"><span class="pre">print</span></code> the <code class="docutils literal notranslate"><span class="pre">number</span></code>. If the <code class="docutils literal notranslate"><span class="pre">number</span></code> is <strong>not</strong> divisible by <code class="docutils literal notranslate"><span class="pre">5</span></code>, then the <code class="docutils literal notranslate"><span class="pre">continue</span></code> keyword is run and this <strong>immediately skips us to the next iteration of the loop</strong>. The end result is that <code class="docutils literal notranslate"><span class="pre">print(number)</span></code> only runs if <code class="docutils literal notranslate"><span class="pre">number</span></code> is a multiple of <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p>
+<p>So, to summarise:</p>
+<p><code class="docutils literal notranslate"><span class="pre">break</span></code> - When this runs, we exit the loop immediately.</p>
+<p><code class="docutils literal notranslate"><span class="pre">continue</span></code> - When this runs, we skip the rest of the code in the loop and immediately skip to its next iteration.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -420,7 +483,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./lab_5"
+            path: "./lab_3"
         },
         predefinedOutput: true
     }
@@ -437,24 +500,6 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="file_io.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">File I/O</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../resources/the_notebook_interface.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The Jupyter Notebook interface</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
