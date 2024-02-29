@@ -34,6 +34,7 @@ parts:
   - caption: Lab 4 - Functions and errors
     chapters:
       - file: lab_4/functions.ipynb
+      - file: lab_4/docstrings.ipynb
       - file: lab_4/errors.ipynb
       - file: lab_4/synoptic_exercises.ipynb
   - caption: Lab 5 - External libraries
