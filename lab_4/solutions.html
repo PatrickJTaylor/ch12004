@@ -227,6 +227,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../lab_5/synoptic_exercises.html">Synoptic exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lab_5/solutions.html">Solutions</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 6 - Data analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lab_6/linear_regression.html">Linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_6/non_linear_regression.html">Non-linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_6/minimisation.html">Minimisation</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../resources/the_notebook_interface.html">The Jupyter Notebook interface</a></li>
@@ -405,8 +411,8 @@ document.write(`
 
     <span class="n">cumulative_sum</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">for</span> <span class="n">divisor</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">cumulative_sum</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">divisor</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">cumulative_sum</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">k</span> <span class="o">**</span> <span class="mi">2</span>
 
     <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="n">cumulative_sum</span><span class="p">)</span>
 

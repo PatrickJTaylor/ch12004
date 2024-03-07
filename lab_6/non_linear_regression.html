@@ -1,0 +1,832 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Non-linear regression &#8212; CH12004: Skills for chemists</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab_6/non_linear_regression';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Minimisation" href="minimisation.html" />
+    <link rel="prev" title="Linear regression" href="linear_regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../introduction/welcome.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="CH12004: Skills for chemists - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="CH12004: Skills for chemists - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../introduction/welcome.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 0 - Jupyter Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lab_0/what_is_a_jupyter_notebook.html">What is a Jupyter Notebook?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_0/using_noteable.html">Getting started with Noteable</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 1 - Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/using_python_as_a_calculator.html">Using Python as a calculator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/strings.html">Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/types.html">Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/synoptic_exercises.html">Synoptic exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_1/solutions.html">Solutions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 2 - Data structures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lab_2/lists.html">Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_2/tuples.html">Tuples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_2/dictionaries.html">Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_2/writing_readable_code.html">Writing readable code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_2/synoptic_exercises.html">Synoptic exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_2/solutions.html">Solutions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 3 - Loops and logic</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lab_3/loops.html">Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_3/nested_loops.html">Nested loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_3/logic.html">Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_3/combining_loops_and_logic.html">Combining loops <strong>and</strong> logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_3/synoptic_exercises.html">Synoptic Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_3/solutions.html">Solutions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 4 - Functions and errors</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lab_4/functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_4/docstrings.html">Docstrings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_4/errors.html">Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_4/synoptic_exercises.html">Synoptic exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_4/solutions.html">Solutions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 5 - External libraries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lab_5/numpy.html">NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_5/matplotlib.html">Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_5/file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_5/synoptic_exercises.html">Synoptic exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_5/solutions.html">Solutions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab 6 - Data analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linear_regression.html">Linear regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Non-linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="minimisation.html">Minimisation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/the_notebook_interface.html">The Jupyter Notebook interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lab_6/non_linear_regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Non-linear regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linearising-data">Linearising data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avoiding-linearisation">Avoiding linearisation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="non-linear-regression">
+<h1>Non-linear regression<a class="headerlink" href="#non-linear-regression" title="Link to this heading">#</a></h1>
+<p>Despite the fact that both of our examples so far have involved <strong>linear</strong> data, we have already made use of the <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> function, which is capable of fitting <strong>non-linear</strong> data: let’s have a look at a <strong>non-linear</strong> example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;non_linear.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cd4d7a552728631cf14583ee75f4d2f88d767bcfc68f18f74b40fbfff568e7b7.png" src="../_images/cd4d7a552728631cf14583ee75f4d2f88d767bcfc68f18f74b40fbfff568e7b7.png" />
+</div>
+</div>
+<p>Here we have some data which looks to be <strong>quadratic</strong>, so let’s try to fit an quadratic <strong>model</strong> using <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code>. First we need to define a <strong>function</strong> that represents the model we would like to fit. If we are trying to fit an quadratic curve, then mathematically we can define this as:</p>
+<div class="math notranslate nohighlight">
+\[y = ax^{2} + bx + c\]</div>
+<p>Let’s write a function to Python-ise this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">quadratic</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate y = ax^2 + bx + c (a quadratic equation).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): A numpy array containing the x-values.</span>
+<span class="sd">        a (float): The x^2 coefficient.</span>
+<span class="sd">        b (float): The x coefficient.</span>
+<span class="sd">        c (float): The additive constant.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (np.ndarray): The y-values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can use <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> just like we did for the linear examples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+
+<span class="n">optimised_parameters</span><span class="p">,</span> <span class="n">covariance_matrix</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">quadratic</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>By extracting the optimised values of <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> from <code class="docutils literal notranslate"><span class="pre">optimised_parameters</span></code> (notice that here we have used <strong>multiple assignment</strong> to separate the optimised parameters from the covariance matrix without having to use list slicing), we can plot our fitted quadratic against the experimental data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">optimised_parameters</span>
+<span class="n">x_model</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y_model</span> <span class="o">=</span> <span class="n">quadratic</span><span class="p">(</span><span class="n">x_model</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="c1"># Using x_model rather than x to evaluate the curve at many more points (smoother curve).</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Experimental data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_model</span><span class="p">,</span> <span class="n">y_model</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Quadratic model&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a9368d18b7e232078040a7b3e0bfb38a813a8e36939e19a3365f11f5ee28ee86.png" src="../_images/a9368d18b7e232078040a7b3e0bfb38a813a8e36939e19a3365f11f5ee28ee86.png" />
+</div>
+</div>
+<p>Notice that here we have created a variable <code class="docutils literal notranslate"><span class="pre">x_model</span></code> which is a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array of evenly spaced values between the minimum experimental <span class="math notranslate nohighlight">\(x\)</span>-value and the maximum experimental <span class="math notranslate nohighlight">\(x\)</span>-value. This allows us to plot our model quadratic curve <strong>smoothly</strong>. Had we used the original <code class="docutils literal notranslate"><span class="pre">x</span></code> variable, our curve would look <strong>jagged</strong> (as <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> really just joins points in sequence to form a line, more points = smoother curve).</p>
+<p>Again we can access the errors in our model parameters (this time without taking into account experimental uncertainties) by looking at the diagonal of the covariance matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">b_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">c_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> +/- </span><span class="si">{</span><span class="n">a_error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;b = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> +/- </span><span class="si">{</span><span class="n">b_error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;c = </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> +/- </span><span class="si">{</span><span class="n">c_error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a = 2.3654895104924902 +/- 0.14021485339715167
+b = 3.769741258747291 +/- 1.4558056370330905
+c = 15.78279720282947 +/- 3.129022442918197
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Just like our linear examples, if we have information about the uncertainties in our experimental measurements, we can plot these using the <code class="docutils literal notranslate"><span class="pre">errorbar</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_err</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.97</span><span class="p">,</span> <span class="mf">0.785</span><span class="p">,</span> <span class="mf">7.10</span><span class="p">,</span> <span class="mf">22.1</span><span class="p">,</span> <span class="mf">11.5</span><span class="p">,</span> <span class="mf">14.6</span><span class="p">,</span> <span class="mf">3.93</span><span class="p">,</span> <span class="mf">17.8</span><span class="p">,</span> <span class="mf">26.4</span><span class="p">,</span> <span class="mf">8.79</span><span class="p">,</span> <span class="mf">2.31</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y_err</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a2234fc5c9d0bf730805271cf59455d3df6fe43480ceb1b7191bd97f67102706.png" src="../_images/a2234fc5c9d0bf730805271cf59455d3df6fe43480ceb1b7191bd97f67102706.png" />
+</div>
+</div>
+<p>We can then fit our quadratic model to this data and use the <code class="docutils literal notranslate"><span class="pre">sigma</span></code> keyword (the weighted least-squares method) to account for the uncertainties and propagate these through to the standard errors on <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimised_parameters</span><span class="p">,</span> <span class="n">covariance_matrix</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">quadratic</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">y_err</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">optimised_parameters</span>
+<span class="n">y_model</span> <span class="o">=</span> <span class="n">quadratic</span><span class="p">(</span><span class="n">x_model</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y_err</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Experimental data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_model</span><span class="p">,</span> <span class="n">y_model</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Quadratic model&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">a_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">b_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">c_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> +/- </span><span class="si">{</span><span class="n">a_error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;b = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> +/- </span><span class="si">{</span><span class="n">b_error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;c = </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> +/- </span><span class="si">{</span><span class="n">c_error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c852fd38681898466774fa3f75f81e156b15a1e45e2a764deafb889cd7fe7c27.png" src="../_images/c852fd38681898466774fa3f75f81e156b15a1e45e2a764deafb889cd7fe7c27.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a = 2.620329100824009 +/- 0.11135716669077006
+b = 1.0044274048596924 +/- 1.1823795446825307
+c = 20.739565009713626 +/- 1.2261302133957708
+</pre></div>
+</div>
+</div>
+</div>
+<section id="linearising-data">
+<h2>Linearising data<a class="headerlink" href="#linearising-data" title="Link to this heading">#</a></h2>
+<p>We’re going to take a look at a concrete example in chemistry now, so as to demonstrate the advantages of using Python to fit models to our data rather than something like Excel.</p>
+<p>Consider the following reaction:</p>
+<div class="math notranslate nohighlight">
+\[2\mathrm{NO}_{2} \rightarrow 2\mathrm{NO} + \mathrm{O}_{2}.\]</div>
+<p>If we carry out a set of experiments to measure the rate constant <span class="math notranslate nohighlight">\(k\)</span> at a range of different temperatures, then we can fit the Arrhenius equation to our data to calculate the activation energy <span class="math notranslate nohighlight">\(E_{a}\)</span> (and the prefactor <span class="math notranslate nohighlight">\(A\)</span>) for this reaction:</p>
+<div class="math notranslate nohighlight">
+\[k = A\exp\left[\frac{-E_{a}}{RT}\right],\]</div>
+<p>where <span class="math notranslate nohighlight">\(R\)</span> is the gas constant and <span class="math notranslate nohighlight">\(T\)</span> is the temperature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;arrhenius.dat&#39;</span><span class="p">,</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;T / K&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;k / M-1s-1&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8881d2a92185158f9045cdc29848fb6f04e53c5c5d8aeec13d142960ccbcb152.png" src="../_images/8881d2a92185158f9045cdc29848fb6f04e53c5c5d8aeec13d142960ccbcb152.png" />
+</div>
+</div>
+<p>Imagine for a moment that we were doing this in Excel, which cannot fit non-linear data (in any meaningful sense). We would have to <strong>linearise our data</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\ln k = \ln A - \frac{E_{a}}{RT},\]</div>
+<p>so let’s simulate that process in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reciprocal_T</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">T</span>
+<span class="n">ln_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">reciprocal_T</span><span class="p">,</span> <span class="n">ln_k</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;1 / T / K-1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ln k / ln(M-1s-1)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/32fb34cd2f27ebc096956c41dfd39a7684a7f7d96aa7c87c54aaefff4becdb45.png" src="../_images/32fb34cd2f27ebc096956c41dfd39a7684a7f7d96aa7c87c54aaefff4becdb45.png" />
+</div>
+</div>
+<p>Now we can use the <code class="docutils literal notranslate"><span class="pre">linregress</span></code> function to compute the value of the slope and the intercept:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">linregress</span>
+
+<span class="n">regression_data</span> <span class="o">=</span> <span class="n">linregress</span><span class="p">(</span><span class="n">reciprocal_T</span><span class="p">,</span> <span class="n">ln_k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;m = </span><span class="si">{</span><span class="n">regression_data</span><span class="o">.</span><span class="n">slope</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;c = </span><span class="si">{</span><span class="n">regression_data</span><span class="o">.</span><span class="n">intercept</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>m = -13509.355973303444
+c = 15.161037389899018
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we look at the linearised Arrhenius equation, we can determine what the slope and intercept correspond to:</p>
+<div class="math notranslate nohighlight">
+\[m = -\frac{E_{a}}{R},\]</div>
+<div class="math notranslate nohighlight">
+\[c = \ln A.\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="kn">import</span> <span class="n">R</span>
+
+<span class="n">ln_k_model</span> <span class="o">=</span> <span class="n">regression_data</span><span class="o">.</span><span class="n">slope</span> <span class="o">*</span> <span class="n">reciprocal_T</span> <span class="o">+</span> <span class="n">regression_data</span><span class="o">.</span><span class="n">intercept</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">reciprocal_T</span><span class="p">,</span> <span class="n">ln_k</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">reciprocal_T</span><span class="p">,</span> <span class="n">ln_k_model</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;1 / T / K-1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ln k / ln(M-1s-1)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">E_a</span> <span class="o">=</span> <span class="o">-</span><span class="n">R</span> <span class="o">*</span> <span class="n">regression_data</span><span class="o">.</span><span class="n">slope</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">regression_data</span><span class="o">.</span><span class="n">intercept</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;E_a = </span><span class="si">{</span><span class="n">E_a</span><span class="si">}</span><span class="s1"> Jmol-1 = </span><span class="si">{</span><span class="n">E_a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="si">}</span><span class="s1"> kJmol-1&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;A = </span><span class="si">{</span><span class="n">A</span><span class="si">}</span><span class="s1"> M-1s-1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/db1e24d0a3a9ea4a26b6453059c9aa32326751987124f0ec11e479ce55bbc1b8.png" src="../_images/db1e24d0a3a9ea4a26b6453059c9aa32326751987124f0ec11e479ce55bbc1b8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_a = 112323.03523328649 Jmol-1 = 112.32303523328649 kJmol-1
+A = 3840209.1525825486 M-1s-1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Okay great, we have values for <span class="math notranslate nohighlight">\(E_{a}\)</span> and <span class="math notranslate nohighlight">\(A\)</span>. If you are new to Python, you may well be thinking at this point “Why bother doing this in Python if I can do the same thing in Excel?” Well, without being exhaustive, there is one <strong>major</strong> problem with the approach we have taken above:</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Linearising your data before performing ordinary least-squares regression actually <strong>biases</strong> your optimised parameters (here <span class="math notranslate nohighlight">\(E_{a}\)</span> and <span class="math notranslate nohighlight">\(A\)</span>). In other words, there is actually an <strong>intrinsic error</strong> in the optimised parameters introduced by linearising your data.</p>
+</div>
+<p>If you are curious about the origins of this bias, click <a class="reference external" href="https://pubs.acs.org/doi/10.1021/acs.jchemed.3c00466">here</a> for a link to a relevant publication on the subject.</p>
+</section>
+<section id="avoiding-linearisation">
+<h2>Avoiding linearisation<a class="headerlink" href="#avoiding-linearisation" title="Link to this heading">#</a></h2>
+<p>So, how can we avoid this problem? As you may already have surmised, we have already seen the solution to this problem: <strong>we do not have to linearise our data in the first place</strong>. In Python, we can use the <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> function to fit <strong>non-linear</strong> data, thus sidestepping the problems associated with linearisation. If we want to use <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code>, we have to define a function to represent the model we would like to fit, here the (non-linear form of the) Arrhenius equation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">arrhenius</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">E_a</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the rate constant at a range of temperatures using the Arrhenius equation k = A exp[-E_a/RT]</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        T (np.ndarray): A numpy array containing the temperatures at which to calculate k.</span>
+<span class="sd">        E_a (float): The activation energy for the reaction (in Jmol-1).</span>
+<span class="sd">        A (float): The prefactor in the Arrhenius equation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (np.ndarray): The rate constant k evaluated at a range of temperatures.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">E_a</span> <span class="o">/</span> <span class="p">(</span><span class="n">R</span> <span class="o">*</span> <span class="n">T</span><span class="p">))</span>
+
+<span class="n">optimised_parameters</span><span class="p">,</span> <span class="n">covariance_matrix</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">arrhenius</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">E_a</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">optimised_parameters</span>
+
+<span class="n">T_model</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">k_model</span> <span class="o">=</span> <span class="n">arrhenius</span><span class="p">(</span><span class="n">T_model</span><span class="p">,</span> <span class="n">E_a</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_model</span><span class="p">,</span> <span class="n">k_model</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;T / K&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;k / M-1s-1&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;E_a = </span><span class="si">{</span><span class="n">E_a</span><span class="si">}</span><span class="s1"> Jmol-1 = </span><span class="si">{</span><span class="n">E_a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="si">}</span><span class="s1"> kJmol-1&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;A = </span><span class="si">{</span><span class="n">A</span><span class="si">}</span><span class="s1"> M-1s-1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_a = 116196.43245237798 Jmol-1 = 116.19643245237798 kJmol-1
+A = 7934409.52396029 M-1s-1
+</pre></div>
+</div>
+<img alt="../_images/cf1901a3f4946978b275214d2aa91b65e583a7a87b6c36c816481724a54ab8ed.png" src="../_images/cf1901a3f4946978b275214d2aa91b65e583a7a87b6c36c816481724a54ab8ed.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lab_6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="linear_regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Linear regression</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="minimisation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Minimisation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linearising-data">Linearising data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avoiding-linearisation">Avoiding linearisation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Patrick J. Taylor & Benjamin J. Morgan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
